@@ -3,7 +3,8 @@ package com.example.date;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 
@@ -11,7 +12,9 @@ import java.util.Date;
 public class MyController {
     @GetMapping("/")
     public String getDate(){
-        Date date = new Date()
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(now, format1); 
         return date;
     }
 }
